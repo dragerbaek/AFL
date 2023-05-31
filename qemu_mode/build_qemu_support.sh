@@ -30,8 +30,9 @@
 
 
 VERSION="2.10.0"
-QEMU_URL="http://download.qemu-project.org/qemu-${VERSION}.tar.xz"
-QEMU_SHA384="68216c935487bc8c0596ac309e1e3ee75c2c4ce898aab796faa321db5740609ced365fedda025678d072d09ac8928105"
+#QEMU_URL="http://download.qemu-project.org/qemu-${VERSION}.tar.xz"
+QEMU_URL="https://src.fedoraproject.org/lookaside/pkgs/qemu/qemu-2.10.0.tar.xz/sha512/67891e78a0df8538838c5fc6d5208e1e0c23f608013818ea8f2f6b7dcbf80404113559b4d33aea32daf25bd43c2d8b5befbebf9fab16adf74a50218239cead53/qemu-${VERSION}.tar.xz"
+QEMU_SHA384="67891e78a0df8538838c5fc6d5208e1e0c23f608013818ea8f2f6b7dcbf80404113559b4d33aea32daf25bd43c2d8b5befbebf9fab16adf74a50218239cead53"
 
 echo "================================================="
 echo "AFL binary-only instrumentation QEMU build script"
@@ -93,8 +94,8 @@ echo "[+] All checks passed!"
 
 ARCHIVE="`basename -- "$QEMU_URL"`"
 
-CKSUM=`sha384sum -- "$ARCHIVE" 2>/dev/null | cut -d' ' -f1`
-
+#CKSUM=`sha384sum -- "$ARCHIVE" 2>/dev/null | cut -d' ' -f1`
+CKSUM=`sha512sum -- "$ARCHIVE" 2>/dev/null | cut -d' ' -f1`
 if [ ! "$CKSUM" = "$QEMU_SHA384" ]; then
 
   echo "[*] Downloading QEMU ${VERSION} from the web..."
