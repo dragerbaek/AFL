@@ -96,6 +96,8 @@ ARCHIVE="`basename -- "$QEMU_URL"`"
 
 #CKSUM=`sha384sum -- "$ARCHIVE" 2>/dev/null | cut -d' ' -f1`
 CKSUM=`sha512sum -- "$ARCHIVE" 2>/dev/null | cut -d' ' -f1`
+echo "$CKSUM"
+echo "$QEMU_SHA384"
 if [ ! "$CKSUM" = "$QEMU_SHA384" ]; then
 
   echo "[*] Downloading QEMU ${VERSION} from the web..."
@@ -112,7 +114,7 @@ if [ "$CKSUM" = "$QEMU_SHA384" ]; then
 
 else
 
-  echo "[-] Error: signature mismatch on $ARCHIVE (perhaps download error?$CKSUM)."
+  echo "[-] Error: signature mismatch on $ARCHIVE (perhaps download error?)."
 
   exit 1
 
