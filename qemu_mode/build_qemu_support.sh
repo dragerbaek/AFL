@@ -102,7 +102,7 @@ if [ ! "$CKSUM" = "$QEMU_SHA384" ]; then
   rm -f "$ARCHIVE"
   wget -O "$ARCHIVE" -- "$QEMU_URL" || exit 1
 
-  CKSUM=`sha384sum -- "$ARCHIVE" 2>/dev/null | cut -d' ' -f1`
+  CKSUM=`sha512sum -- "$ARCHIVE" 2>/dev/null | cut -d' ' -f1`
 
 fi
 
@@ -112,9 +112,8 @@ if [ "$CKSUM" = "$QEMU_SHA384" ]; then
 
 else
 
-  echo "[-] Error: signature mismatch on $ARCHIVE (perhaps download error?)."
-  echo "$CKSUM"
-  echo "$QEMU_SHA384"
+  echo "[-] Error: signature mismatch on $ARCHIVE (perhaps download error?$CKSUM)."
+
   exit 1
 
 fi
