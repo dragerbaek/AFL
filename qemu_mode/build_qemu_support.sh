@@ -113,9 +113,12 @@ if [ "$CKSUM" = "$QEMU_SHA384" ]; then
   echo "[+] Cryptographic signature on $ARCHIVE checks out."
 
 else
-
+  echo "================================================="
+  echo "$CKSUM"
+  echo "$QEMU_SHA384"
+ 
   echo "[-] Error: signature mismatch on $ARCHIVE (perhaps download error?)."
-
+  echo "================================================="
   exit 1
 
 fi
